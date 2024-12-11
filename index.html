@@ -7,6 +7,14 @@
 </head>
 <body>
     <h1>Test Server</h1>
-    
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "efca2737-113b-4ee7-9a66-3c3c719015f5",
+    });
+  });
+</script>
 </body>
 </html>
