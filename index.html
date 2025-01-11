@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://accounts.google.com https://www.gstatic.com https://apis.google.com 'unsafe-inline' 'unsafe-eval';">
     <title>Testing Visitors Count</title>
 </head>
@@ -11,8 +10,6 @@
     <h1>Test Server (testing visitors count)</h1>
 
     <!-- Google API -->
-    <script src="https://apis.google.com/js/api.js" onload="initializeGapi()"></script>
-
     <script>
         const CLIENT_ID = '780834703501-jngstt0d1u5epbl8ho4d23h8eiaiklpk.apps.googleusercontent.com';
         const DISCOVERY_DOCS = ['https://analyticsreporting.googleapis.com/$discovery/rest?version=v4'];
@@ -51,6 +48,9 @@
             });
         }
     </script>
+
+    <!-- Google API Script -->
+    <script src="https://apis.google.com/js/api.js" onload="initializeGapi()"></script>
 
     <button onclick="authenticate()">Sign in and Fetch Data</button>
     <h1>Website Analytics</h1>
