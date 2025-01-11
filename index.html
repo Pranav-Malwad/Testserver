@@ -25,9 +25,11 @@
 
 
 <script>
+ let count =  document.getElementById('visitorCount')
 document.addEventListener('DOMContentLoaded', () => {
+  
   let visitCount = localStorage.getItem('visitCount');
-
+  count.innerHTML = visitCount;
   if (!visitCount) {
       visitCount = 0;
   }
@@ -43,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <a href="https://lookerstudio.google.com/reporting/ff271eb3-4893-4341-92a9-7d884e231194" target="_blank">
   <button>View Analytics Report</button>
 </a>
+
+<h1 id="visitorCount"> visitors count : </h1>
 
 
 </body>
