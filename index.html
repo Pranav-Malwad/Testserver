@@ -7,6 +7,8 @@
 
 
   <title>Testing visitors count</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,11 +27,9 @@
 
 
 <script>
- let count =  document.getElementById('visitorCount')
 document.addEventListener('DOMContentLoaded', () => {
-  
   let visitCount = localStorage.getItem('visitCount');
-  count.innerHTML = visitCount;
+
   if (!visitCount) {
       visitCount = 0;
   }
@@ -37,16 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
   visitCount++;
   localStorage.setItem('visitCount', visitCount);
 
+
+  // Update visitor count in the UI
+  document.getElementById('visitorCount').textContent = visitCount;
+
   console.log(`You have visited this site ${visitCount} times.`);
 });
 </script>
 
+<div class="card shadow-sm">
+  <div class="card-body text-center">
+    <h5 class="card-title">Visitor Count</h5>
+    <p class="card-text display-4" id="visitorCount">Loading...</p>
+    <button class="btn btn-primary" onclick="resetVisitorCount()">Reset Count</button>
+  </div>
+</div>
 
-<a href="https://lookerstudio.google.com/reporting/ff271eb3-4893-4341-92a9-7d884e231194" target="_blank">
-  <button>View Analytics Report</button>
-</a>
-
-<h1 id="visitorCount"> visitors count : </h1>
+<!-- Bootstrap 4 JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 </body>
