@@ -24,13 +24,20 @@
   </script>
 
 
-<!-- <a title="Privacy-friendly Web Analytics" href="https://clicky.com/101474983"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-<script async data-id="101474983" src="//static.getclicky.com/js"></script> -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  let visitCount = localStorage.getItem('visitCount');
 
+  if (!visitCount) {
+      visitCount = 0;
+  }
 
-<a title="Google Analytics Alternative" href="https://clicky.com/101474983"><img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
-<script async data-id="101474983" src="//static.getclicky.com/js"></script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101474983ns.gif" /></p></noscript>
+  visitCount++;
+  localStorage.setItem('visitCount', visitCount);
+
+  console.log(`You have visited this site ${visitCount} times.`);
+});
+</script>
 
 
 <a href="https://lookerstudio.google.com/reporting/ff271eb3-4893-4341-92a9-7d884e231194" target="_blank">
