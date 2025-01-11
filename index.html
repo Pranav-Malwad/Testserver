@@ -4,70 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://accounts.google.com https://www.gstatic.com 'unsafe-inline' 'unsafe-eval';">
-
-    <title>Testing visitors count</title>
+    <title>Testing Visitors Count</title>
 </head>
 <body>
     <h1>Test Server (testing visitors count)</h1>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DW3YVHNSZT"></script>
 
+    <!-- Google API -->
+    <script src="https://apis.google.com/js/api.js" onload="initializeGapi()"></script>
 
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script>
+        const CLIENT_ID = '780834703501-jngstt0d1u5epbl8ho4d23h8eiaiklpk.apps.googleusercontent.com';
+        const DISCOVERY_DOCS = ['https://analyticsreporting.googleapis.com/$discovery/rest?version=v4'];
+        const SCOPES = 'https://www.googleapis.com/auth/analytics.readonly';
 
-  gtag('config', 'G-DW3YVHNSZT');
-</script>
+        function initializeGapi() {
+            console.log('Google API Client loaded.');
+        }
 
-
-
-<script src="https://apis.google.com/js/api.js"></script>
-<script>
-    const CLIENT_ID = '780834703501-jngstt0d1u5epbl8ho4d23h8eiaiklpk.apps.googleusercontent.com'; // Replace with your Client ID
-    const DISCOVERY_DOCS = ['https://analyticsreporting.googleapis.com/$discovery/rest?version=v4'];
-    const SCOPES = 'https://www.googleapis.com/auth/analytics.readonly';
-
-    function authenticate() {
-        gapi.load('client:auth2', () => {
-            gapi.auth2.init({ client_id: CLIENT_ID, scope: SCOPES }).then(() => {
-                const authInstance = gapi.auth2.getAuthInstance();
-                authInstance.signIn().then(() => {
-                    getAnalyticsData();
-                }).catch(error => {
-                    console.error('Authentication failed:', error);
+        function authenticate() {
+            gapi.load('client:auth2', () => {
+                gapi.auth2.init({ client_id: CLIENT_ID, scope: SCOPES }).then(() => {
+                    const authInstance = gapi.auth2.getAuthInstance();
+                    authInstance.signIn().then(() => {
+                        getAnalyticsData();
+                    }).catch(error => {
+                        console.error('Authentication failed:', error);
+                    });
                 });
             });
-        });
-    }
+        }
 
-    function getAnalyticsData() {
-        gapi.client.load('analyticsreporting', 'v4', () => {
-            gapi.client.analyticsreporting.reports.batchGet({
-                reportRequests: [{
-                    viewId: '337719460',
-                    dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
-                    metrics: [{ expression: 'ga:sessions' }],
-                }]
-            }).then(response => {
-                console.log(response.result);
-            }).catch(error => {
-                console.error('Error fetching data:', error);
+        function getAnalyticsData() {
+            gapi.client.load('analyticsreporting', 'v4', () => {
+                gapi.client.analyticsreporting.reports.batchGet({
+                    reportRequests: [{
+                        viewId: '337719460',
+                        dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+                        metrics: [{ expression: 'ga:sessions' }],
+                    }]
+                }).then(response => {
+                    console.log('Analytics Data:', response.result);
+                }).catch(error => {
+                    console.error('Error fetching data:', error);
+                });
             });
-        });
-    }
-</script>
-<button onclick="authenticate()">Sign in and Fetch Data</button>
+        }
+    </script>
 
-
-
+    <button onclick="authenticate()">Sign in and Fetch Data</button>
     <h1>Website Analytics</h1>
     <p id="active-users">Active Users: Loading...</p>
     <p id="total-visitors">Total Visitors: Loading...</p>
-
-
-
-    
 </body>
 </html>
