@@ -49,9 +49,42 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="card-body text-center">
     <h5 class="card-title">Visitor Count</h5>
     <p class="card-text display-4" id="visitorCount">Loading...</p>
-    <button class="btn btn-primary" onclick="resetVisitorCount()">Reset Count</button>
   </div>
 </div>
+
+
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .data {
+      margin-top: 20px;
+    }
+  </style>
+
+
+  <h1>Google Analytics Data</h1>
+  <button id="fetchData">Fetch Data</button>
+  <div class="data" id="data"></div>
+
+  <script>
+    document.getElementById("fetchData").addEventListener("click", async () => {
+      const response = await fetch("http://localhost:3000/analytics-data");
+      const data = await response.json();
+
+      const displayDiv = document.getElementById("data");
+      displayDiv.innerHTML = `
+        <h3>Analytics Data:</h3>
+        <p><strong>Sessions:</strong> ${data.totalsForAllResults["ga:sessions"]}</p>
+        <p><strong>Pageviews:</strong> ${data.totalsForAllResults["ga:pageviews"]}</p>
+      `;
+    });
+  </script>
+
+
 
 <!-- Bootstrap 4 JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
