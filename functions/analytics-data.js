@@ -1,7 +1,7 @@
 const { google } = require("googleapis");
 
 // Load service account key file
-const key = require("../backend/test-server-447503-72bd59363a20.json");
+const key = require("./test-server-447503-72bd59363a20.json");
 
 // Initialize JWT client
 const jwtClient = new google.auth.JWT(

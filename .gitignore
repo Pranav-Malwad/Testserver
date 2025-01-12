@@ -76,3 +76,6 @@ path/to/service-account.json
 # Temporary files
 *.tmp
 *.temp
+
+# Local Netlify folder
+.netlify
