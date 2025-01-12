@@ -72,7 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <script>
     document.getElementById("fetchData").addEventListener("click", async () => {
-      const response = await fetch("http://localhost:3000/analytics-data");
+      // const response = await fetch("http://localhost:3000/analytics-data");
+      const response = await fetch("/.netlify/functions/analytics-data");
+
       const data = await response.json();
 
       const displayDiv = document.getElementById("data");
